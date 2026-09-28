@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anton x YSL Comment Randomizer</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#fafaf7;--card:#fff;--fg:#151515;--mut:#777;--acc:#151515;--accfg:#fff;--bd:#e4e2da;--gold:#b08d3c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0e0e;--card:#181818;--fg:#f2f0ea;--mut:#9a978e;--acc:#e8d9a8;--accfg:#151515;--bd:#2c2b28;--gold:#e8d9a8}}
+:root[data-theme="dark"]{--bg:#0e0e0e;--card:#181818;--fg:#f2f0ea;--mut:#9a978e;--acc:#e8d9a8;--accfg:#151515;--bd:#2c2b28;--gold:#e8d9a8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Georgia,"Noto Serif Thai",serif;min-height:100%}
+main{max-width:640px;margin:0 auto;padding:28px 18px 40px}
+h1{font-size:13px;letter-spacing:.35em;text-transform:uppercase;text-align:center;color:var(--gold);margin:0 0 4px;font-weight:400}
+.sub{text-align:center;color:var(--mut);font-size:14px;margin:0 0 22px;font-family:system-ui,sans-serif}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;font-family:system-ui,sans-serif}
+.chip{border:1px solid var(--bd);background:var(--card);color:var(--fg);padding:7px 13px;border-radius:99px;font-size:13px;cursor:pointer}
+.chip.on{background:var(--acc);color:var(--accfg);border-color:var(--acc)}
+.out{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:30px 22px;min-height:150px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:22px;line-height:1.45;white-space:pre-line}
+.opts{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:14px 0;font-family:system-ui,sans-serif;font-size:13px;color:var(--mut)}
+.opts label{display:flex;align-items:center;gap:6px;cursor:pointer}
+.opts select{background:var(--card);color:var(--fg);border:1px solid var(--bd);border-radius:6px;padding:3px 6px}
+.btns{display:flex;gap:10px;font-family:system-ui,sans-serif}
+button.main{flex:1;padding:15px;border-radius:12px;border:0;font-size:16px;cursor:pointer}
+#rand{background:var(--acc);color:var(--accfg);font-weight:600}
+#copy{background:transparent;color:var(--fg);border:1px solid var(--fg)}
+h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin:28px 0 8px;font-weight:400;font-family:system-ui,sans-serif}
+.hist{list-style:none;margin:0;padding:0}
+.hist li{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--bd);font-size:15px}
+.hist button{flex:none;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:8px;padding:5px 10px;font-size:12px;cursor:pointer;font-family:system-ui,sans-serif}
+</style>
+</head>
+<body>
+<main>
+<h1>Anton × YSL</h1>
+<p class="sub">สุ่มประโยคอวยแอนตัน แล้วกดคัดลอกไปคอมเมนต์ได้เลย</p>
+<div class="chips" id="chips"></div>
+<div class="out" id="out">กดปุ่ม “สุ่ม” ได้เลย ✨</div>
+<div class="opts">
+<label>จำนวนประโยค
+<select id="n"><option>1</option><option>2</option><option>3</option></select></label>
+<label><input type="checkbox" id="tag" checked> ใส่คีย์เวิร์ด + แฮชแท็ก</label>
+</div>
+<div class="btns"><button class="main" id="rand">🎲 สุ่ม</button><button class="main" id="copy">คัดลอก</button></div>
+<h2>ที่สุ่มมาก่อนหน้า</h2>
+<ul class="hist" id="hist"></ul>
+</main>
+<script>
+var G={
+"ลุค/ออร่า":["Anton completely owned the runway look at Paris Fashion Week!","Anton’s visuals at the YSL show are absolutely unmatched.","Anton looks effortlessly chic and stunning in YSL!","Anton is the epitome of elegance at Paris Fashion Week.","Anton took everyone’s breath away with his stunning visuals tonight.","He looks like a main character strolling through Paris!","Anton’s presence at the YSL event is purely magnetic.","Anton in Paris is a dream come true for all of us!","Anton’s visual card never declines, especially at Paris Fashion Week!","Anton looks like a high-fashion model straight off the runway!","Anton is literally glowing in the streets of Paris.","The sophistication Anton projects in YSL is next level.","Anton looks so expensive and refined!","His aura in Paris is just beyond incredible.","Anton’s visual and charm are serving top-tier perfection!","Anton is redefining high fashion with his effortless grace.","I can’t get over how handsome Anton looks at the YSL show!","Anton was born to shine on the global fashion stage.","His side profile and charisma at YSL are unreal!","Anton is the ultimate muse for YSL!"],
+"เสื้อผ้า/สไตล์":["YSL and Anton are a match made in fashion heaven!","Anton pulled off this YSL outfit like a true fashion icon.","This YSL look suits Anton’s vibe so perfectly!","The tailoring of YSL on Anton is absolutely flawless.","Anton embodies the classy and edgy spirit of YSL effortlessly.","This fit on Anton is going down in history!","Anton wearing YSL in Paris is the ultimate fashion moment.","Nobody could wear this YSL outfit better than Anton.","Anton brings out the true beauty of Saint Laurent’s design.","Anton’s styling for the YSL show is a 10 out of 10!","The sleek YSL silhouette fits Anton’s tall frame perfectly.","Anton in black YSL is the definition of perfection.","This look is absolute perfection from head to toe!","YSL fashion hits different when Anton wears it.","Anton just set a new standard for Paris Fashion Week style.","Anton makes YSL high fashion look so natural and cool.","This YSL ensemble was made for Anton, no doubt!","The YSL styling highlights Anton’s incredible proportions.","Anton looks like a walking art piece in that YSL coat!","Anton and YSL fashion are a match made in heaven."],
+"ยินดี/ภูมิใจ":["So proud of Anton representing at Paris Fashion Week!","Congratulations Anton on your spectacular appearance with YSL!","Anton is making us all so proud on the global stage!","Congratulations to Anton for making such an unforgettable mark in Paris!","Anton is shining brighter than ever with YSL at PFW!","Huge congratulations to Anton on this huge milestone with YSL!","Seeing Anton at Paris Fashion Week is such a proud moment for all of us.","Anton earned his spot among the global fashion icons!","So happy to see Anton achieving great things with YSL!","Anton’s hard work and talent brought him straight to Paris!","Congratulations Anton! This is just the beginning of your fashion journey.","Seeing Anton with YSL in Paris fills my heart with joy and pride.","Anton is taking the fashion world by storm! So proud!","Congratulations Anton on taking Paris Fashion Week by storm!","You truly deserve all the recognition and praise tonight, Anton!","Anton proved once again that he belongs on the international stage.","Bravo Anton! What a memorable night with YSL.","Anton, you made Paris shine even brighter today!","We are so proud to see Anton’s growth as a fashion icon.","Cheers to Anton for a stunning and successful YSL event!"],
+"หวีด/ตื่นเต้น":["I’m screaming! Anton looks way too good at the YSL show!","Paris wasn’t ready for Anton’s incredible charisma!","Stop everything and look at Anton at Paris Fashion Week right now!","Anton completely broke the internet with this YSL look!","My eyes are blessed thanks to Anton’s YSL visuals!","I can’t breathe, Anton looks unreal in Paris!","Anton is eating up Paris Fashion Week and leaving no crumbs!","This Anton x YSL combo is dangerous for my heart!","How is Anton even real? He looks insane in YSL!","The cameras can’t stop flashing for Anton in Paris!","Anton is literally the event! Everyone is talking about him!","I am officially obsessed with Anton’s YSL appearance!","Anton just served the look of the century at Paris Fashion Week!","Is it even legal to look this good, Anton?!","Anton is serving face, body, and high fashion all at once!","Paris Fashion Week will never be the same after Anton!","Anton stole the entire show with his presence at YSL!","I need 1000 pictures of Anton in YSL right this second!","Anton’s confidence and style at YSL are totally unmatched!","Living for Anton’s Paris Fashion Week era!"],
+"สั้นๆ ติดแฮชแท็ก":["Anton, the main attraction at YSL!","Paris belongs to Anton tonight.","A true YSL prince in Paris.","Anton’s elegance in YSL is effortless.","Masterpiece in YSL, Anton.","Anton shining bright at Paris Fashion Week!","Flawless from head to toe.","The definition of Parisian chic.","Anton x YSL: Perfection defined.","Global fashion star Anton.","Serving pure luxury in Paris.","Anton stole our hearts in YSL!","Iconic moment at PFW!","Absolute perfection, Anton!","Paris loves Anton!","Unstoppable visuals in YSL.","Fashion royalty Anton.","So proud of you, Anton!","The moment of the night!","Anton is the ultimate YSL icon!"]};
+var TAGS="ANTON TO SAINT LAURENT PFW\n#ANTONxSaintLaurentSS27 #ANTONxSaintLaurent #생로랑앤톤 @YSL";
+var cur="ทั้งหมด",text="",hist=[];
+function pool(){return cur==="ทั้งหมด"?[].concat.apply([],Object.values(G)):G[cur]}
+function chips(){var el=document.getElementById("chips");el.innerHTML="";["ทั้งหมด"].concat(Object.keys(G)).forEach(function(k){var b=document.createElement("button");b.className="chip"+(k===cur?" on":"");b.textContent=k;b.onclick=function(){cur=k;chips()};el.appendChild(b)})}
+function copyText(t,btn){function ok(){if(btn){var o=btn.textContent;btn.textContent="คัดลอกแล้ว ✓";setTimeout(function(){btn.textContent=o},1200)}}
+try{navigator.clipboard.writeText(t).then(ok,fb)}catch(e){fb()}
+function fb(){var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy")}catch(e){}document.body.removeChild(a);ok()}}
+function rand(){var p=pool().slice(),n=+document.getElementById("n").value,r=[];
+while(r.length<n&&p.length){r.push(p.splice(Math.floor(Math.random()*p.length),1)[0])}
+text=r.join(" ")+(document.getElementById("tag").checked?"\n"+TAGS:"");
+document.getElementById("out").textContent=text;
+hist.unshift(text);hist=hist.slice(0,8);renderHist()}
+function renderHist(){var ul=document.getElementById("hist");ul.innerHTML="";hist.forEach(function(t){var li=document.createElement("li");var s=document.createElement("span");s.textContent=t.replace(/\n/g," ");var b=document.createElement("button");b.textContent="คัดลอก";b.onclick=function(){copyText(t,b)};li.appendChild(s);li.appendChild(b);ul.appendChild(li)})}
+document.getElementById("rand").onclick=rand;
+document.getElementById("copy").onclick=function(){if(text)copyText(text,this)};
+chips();
+</script>
+</body>
+</html>
