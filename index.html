@@ -52,7 +52,7 @@ h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);
 <input type="checkbox" id="tagGeneral" checked>
 <span><span class="taglabel">แท็กเทรนด์ทั่วไป</span>
 <span class="tagpreview">ANTON SAINT LAURENT AMBASSADOR 
-#ANTONxSaintLaurent #ANTONxSaintLaurentSS27 @YSL</span></span>
+#ANTONxSaintLaurent #ANTONxSaintLaurentSS27 #생로랑앤톤 @YSL</span></span>
 </label>
 </div>
 <div class="tagbox">
@@ -78,7 +78,7 @@ var G={
 };
 var TAG_GENERAL="ANTON TO SAINT LAURENT PFW #ANTONxSaintLaurentSS27 #ANTONxSaintLaurent #생로랑앤톤 @YSL";
 var TAG_EVENT="ANTON SAINT LAURENT AMBASSADOR 
-#ANTONxSaintLaurent #ANTONxSaintLaurentSS27 @YSL";
+#ANTONxSaintLaurent #ANTONxSaintLaurentSS27 #생로랑앤톤 @YSL";
 var cur="ทั้งหมด",text="",hist=[];
 function pool(){return cur==="ทั้งหมด"?[].concat.apply([],Object.values(G)):G[cur]}
 function chips(){var el=document.getElementById("chips");el.innerHTML="";["ทั้งหมด"].concat(Object.keys(G)).forEach(function(k){var b=document.createElement("button");b.className="chip"+(k===cur?" on":"");b.textContent=k;b.onclick=function(){cur=k;chips()};el.appendChild(b)})}
